@@ -29,6 +29,7 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     //$('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
     napisiSamoBesede(sporocilo);
     razdeliNaBesedeSlike(sporocilo);
+    narediVideo(slike);
   }
 
   $('#poslji-sporocilo').val('');
@@ -80,6 +81,7 @@ $(document).ready(function() {
     //$('#sporocila').append(novElement);
     napisiSamoBesede(sporocilo);
     razdeliNaBesedeSlike(sporocilo);
+    narediVideo(sporocilo);
     
   });
   
@@ -183,4 +185,16 @@ function narediSliko(link) {
   s.width=width;
   s.style.marginLeft=margin;*/
   return s;
+}
+
+function narediVideo(link) {
+  //var delcek1="https://www.youtube.com/embed/";
+  var delcek2=link.substr(32);
+  //var celota= delcek1.concat(delcek2);
+  var v= "<iframe src='https://www.youtube.com/embed/delcek2'  width='200' height='150'  style='margin:20px' allowfullscreen></iframe>";
+  /*var s= document.createElement(s);
+  s.src=link;
+  s.width=width;
+  s.style.marginLeft=margin;*/
+  return v;
 }
