@@ -145,6 +145,7 @@ function razdeliNaBesedeVideo(sporocilo) {
     //}
   }
 }
+
 function narediVideo(link) {
   //var delcek1="https://www.youtube.com/embed/";
   var delcek2=link.substr(32);
