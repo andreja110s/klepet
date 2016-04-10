@@ -45,7 +45,6 @@ var streznik = http.createServer(function(zahteva, odgovor) {
   } else {
     potDoDatoteke = 'public' + zahteva.url;
   }
-
   var absolutnaPotDoDatoteke = './' + potDoDatoteke;
   posredujStaticnoVsebino(odgovor, predpomnilnik, absolutnaPotDoDatoteke);
 });
