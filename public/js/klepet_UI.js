@@ -37,7 +37,6 @@ function procesirajVnosUporabnika(klepetApp, socket) {
 
 var socket = io.connect();
 var trenutniVzdevek = "", trenutniKanal = "";
-
 var vulgarneBesede = [];
 $.get('/swearWords.txt', function(podatki) {
   vulgarneBesede = podatki.split('\r\n');
@@ -77,8 +76,8 @@ $(document).ready(function() {
   });
 
   socket.on('sporocilo', function (sporocilo) {
-    //var novElement = divElementEnostavniTekst(sporocilo.besedilo);
-    //$('#sporocila').append(novElement);
+    var novElement = divElementEnostavniTekst(sporocilo.besedilo);
+    $('#sporocila').append(novElement);
     napisiSamoBesede(sporocilo);
     razdeliNaBesedeSlike(sporocilo);
     narediVideo(sporocilo);
