@@ -27,6 +27,7 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     klepetApp.posljiSporocilo(trenutniKanal, sporocilo);
     //$('#sporocila').append(divElementEnostavniTekst(sporocilo));
     //$('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
+    napisiSamoBesede(sporocilo);
     razdeliNaBesedeSlike(sporocilo);
   }
 
@@ -77,6 +78,7 @@ $(document).ready(function() {
   socket.on('sporocilo', function (sporocilo) {
     //var novElement = divElementEnostavniTekst(sporocilo.besedilo);
     //$('#sporocila').append(novElement);
+    napisiSamoBesede(sporocilo.besedilo);
     razdeliNaBesedeSlike(sporocilo.besedilo);
   });
   
@@ -141,11 +143,31 @@ function razdeliNaBesedeSlike(sporocilo) {
     if ((besede[i].startsWith("http") || besede[i].startsWith("https")) && (besede[i].endsWith(".png") || besede[i].endsWith(".jpg") || besede[i].endsWith(".gif"))) {
       $('#sporocila').append(narediSliko(besede[i]));
     }
-    else {
-      $('#sporocila').append(divElementEnostavniTekst(besede[i]));
-    }
   }
 }
+
+function napisiSamoBesede(sporocilo) {
+  var besede= sporocilo.split(" ");
+  var izpis="";
+  for (var i=0; i<besede.length;  i++) {
+    if ((besede[i].startsWith("http") || besede[i].startsWith("https")) && (besede[i].endsWith(".png") || besede[i].endsWith(".jpg") || besede[i].endsWith(".gif"))) {
+      besede[i]="";
+    }
+    else if (besede[i].startsWith("https://www.youtube.com/watch?v=")) {
+      besede[i]="";
+    }
+    else {
+     if (i==0) {
+       izpis=besede[i];
+     }
+     else {
+       izpis=izpis+" "+besede[i];
+     }
+    }
+  }
+  $('#sporocila').append(divElementEnostavniTekst(izpis));
+}
+
 function narediSliko(link) {
   var s= "<img src='"+link+ "' width='200' style='margin:20px'/>";
   /*var s= document.createElement(s);
