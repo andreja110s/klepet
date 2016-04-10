@@ -62,3 +62,8 @@ a {
   cursor:pointer;
   background-color: #ddd;
 }
+
+#zaSliko {
+  width: 200px;
+  margin-left: 20px;
+}
